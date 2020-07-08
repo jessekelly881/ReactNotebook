@@ -1,21 +1,17 @@
-import React, { useState, useCallback, useMemo } from "react";
-import { Slate, Editable, withReact } from "slate-react";
-import { Editor, Transforms, Range, Point, createEditor } from "slate";
+import React, { useCallback, useMemo } from "react";
+import { createEditor, Editor, Point, Range, Transforms } from "slate";
 import { withHistory } from "slate-history";
+import { Editable, Slate, withReact } from "slate-react";
+import ComponentEditor from "ui/components/componentEditor";
 import {
-    StyledP,
+    PaddedComponent,
     StyledH1,
     StyledH2,
     StyledH3,
     StyledH4,
     StyledH5,
-    PaddedComponent,
+    StyledP,
 } from "ui/components/elements";
-import ComponentEditor from "ui/components/componentEditor";
-import { cx, css } from "emotion";
-import welcomeState from "./welcome.yml";
-
-console.log(welcomeState);
 
 const SHORTCUTS = {
     "*": "list-item",
@@ -31,63 +27,25 @@ const SHORTCUTS = {
     "```": "component-editor",
 };
 
-const Menu = React.forwardRef(({ className, ...props }, ref) => (
-    <div
-        {...props}
-        ref={ref}
-        className={cx(
-            className,
-            css`
-                & > * {
-                    display: inline-block;
-                }
-                & > * + * {
-                    margin-left: 15px;
-                }
-            `,
-        )}
-    />
-));
-
-export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
-    <Menu
-        {...props}
-        ref={ref}
-        className={cx(
-            className,
-            css`
-                position: relative;
-                padding: 1px 18px 17px;
-                margin: 0 -20px;
-                border-bottom: 2px solid #eee;
-                margin-bottom: 20px;
-            `,
-        )}
-    />
-));
-
-const FullEditor = () => {
-    const [value, setValue] = useState(welcomeState);
+const FullEditor = ({ value, setValue, ...props }) => {
     const renderElement = useCallback(props => <Element {...props} />, []);
     const editor = useMemo(
         () => withShortcuts(withReact(withHistory(createEditor()))),
         [],
     );
     return (
-        <>
-            <Slate
-                editor={editor}
-                value={value}
-                onChange={value => setValue(value)}>
-                <Toolbar></Toolbar>
-                <Editable
-                    renderElement={renderElement}
-                    placeholder="Welcome to React Notebook!"
-                    spellCheck
-                    autoFocus
-                />
-            </Slate>
-        </>
+        <Slate
+            editor={editor}
+            value={value}
+            onChange={value => setValue(value)}
+            {...props}>
+            <Editable
+                renderElement={renderElement}
+                placeholder="Welcome to React Notebook!"
+                spellCheck
+                autoFocus
+            />
+        </Slate>
     );
 };
 

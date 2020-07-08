@@ -13,4 +13,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// export const createNotebook = _ => db.collection("notebooks").add({});
+export const createNotebook = data =>
+    db.collection("notebooks").add(data || {});
+
+export const updateNotebook = id => data =>
+    db.collection("notebooks").doc(id).set(data, { merge: true });
+
+export const getNotebook = id => db.collection("notebooks").doc(id).get();

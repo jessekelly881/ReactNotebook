@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-github";
 import styled from "styled-components";
-import theme from "./theme";
-
-console.log(theme);
+import "./index.scss";
 
 const StyledPreview = styled(LivePreview)`
     position: relative;
@@ -25,6 +26,12 @@ const EditorWrapper = styled.div`
     }
 `;
 
+const StyledHeader = styled.div`
+    height: 20px;
+    padding: 1rem;
+    background: #fafafa;
+`;
+
 const StyledEditor = _ => (
     <EditorWrapper>
         <LiveEditor />
@@ -34,6 +41,7 @@ const StyledEditor = _ => (
 const StyledError = styled(LiveError)`
     display: block;
     padding: 1rem;
+    margin: 0;
     background: #ff7f7f;
     color: black;
     white-space: pre-wrap;
@@ -46,12 +54,32 @@ const StyledProvider = styled(LiveProvider)`
     overflow: hidden;
 `;
 
-export default () => (
-    <section className="componentEditor">
-        <StyledProvider code="<strong>Hello World!</strong>" theme={theme}>
-            <StyledEditor />
-            <StyledPreview />
-            <StyledError />
-        </StyledProvider>
-    </section>
-);
+export default () => {
+    const [code, setCode] = useState("<strong>Hello World!</strong>");
+    return (
+        <section className="componentEditor">
+            <StyledProvider code={code}>
+                <StyledHeader>
+                    <span style={{ float: "right" }}>x</span>
+                </StyledHeader>
+                <AceEditor
+                    style={{
+                        height: "200px",
+                        width: "100%",
+                        background: "#fafafa",
+                    }}
+                    mode="javascript"
+                    value={code}
+                    theme="github"
+                    onChange={val => setCode(val)}
+                    name="UNIQUE_ID_OF_DIV"
+                    fontSize={16}
+                    editorProps={{ $blockScrolling: true }}
+                    showPrintMargin={false}
+                />
+                <StyledError />
+                <StyledPreview />
+            </StyledProvider>
+        </section>
+    );
+};

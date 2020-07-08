@@ -24,13 +24,26 @@ const SHORTCUTS = {
     "####": "heading-four",
     "#####": "heading-five",
     "######": "heading-six",
-    "```": "component-editor",
+    "`": "component-editor",
+};
+
+const withEditableVoids = editor => {
+    const { isVoid } = editor;
+
+    editor.isVoid = element => {
+        return element.type === "component-editor" ? true : isVoid(element);
+    };
+
+    return editor;
 };
 
 const FullEditor = ({ value, setValue, ...props }) => {
     const renderElement = useCallback(props => <Element {...props} />, []);
     const editor = useMemo(
-        () => withShortcuts(withReact(withHistory(createEditor()))),
+        () =>
+            withEditableVoids(
+                withShortcuts(withReact(withHistory(createEditor()))),
+            ),
         [],
     );
     return (
@@ -40,6 +53,7 @@ const FullEditor = ({ value, setValue, ...props }) => {
             onChange={value => setValue(value)}
             {...props}>
             <Editable
+                onKeyDown={key => console.log(key)}
                 renderElement={renderElement}
                 placeholder="Welcome to React Notebook!"
                 spellCheck
@@ -125,7 +139,8 @@ const withShortcuts = editor => {
     return editor;
 };
 
-const Element = ({ attributes, children, element }) => {
+const Element = props => {
+    const { attributes, children, element } = props;
     switch (element.type) {
         case "block-quote":
             return <blockquote {...attributes}>{children}</blockquote>;
@@ -171,7 +186,7 @@ const Element = ({ attributes, children, element }) => {
             return <li {...attributes}>{children}</li>;
 
         case "component-editor":
-            return <ComponentEditor {...attributes} />;
+            return <ComponentEditor {...props} />;
 
         default:
             return (

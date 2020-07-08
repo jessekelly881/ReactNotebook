@@ -57,7 +57,7 @@ const StyledProvider = styled(LiveProvider)`
 export default () => {
     const [code, setCode] = useState("<strong>Hello World!</strong>");
     return (
-        <section className="componentEditor">
+        <section className="componentEditor" contentEditable={false}>
             <StyledProvider code={code}>
                 <StyledHeader></StyledHeader>
                 <AceEditor

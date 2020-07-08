@@ -2,6 +2,7 @@ import React, { useState, useCallback, useMemo } from "react";
 import { Slate, Editable, withReact } from "slate-react";
 import { Editor, Transforms, Range, Point, createEditor } from "slate";
 import { withHistory } from "slate-history";
+import { StyledP, StyledH1, PaddedComponent } from "./components/elements";
 
 const SHORTCUTS = {
     "*": "list-item",
@@ -121,7 +122,11 @@ const Element = ({ attributes, children, element }) => {
         case "bulleted-list":
             return <ul {...attributes}>{children}</ul>;
         case "heading-one":
-            return <h1 {...attributes}>{children}</h1>;
+            return (
+                <PaddedComponent>
+                    <StyledH1 {...attributes}>{children}</StyledH1>
+                </PaddedComponent>
+            );
         case "heading-two":
             return <h2 {...attributes}>{children}</h2>;
         case "heading-three":
@@ -135,13 +140,17 @@ const Element = ({ attributes, children, element }) => {
         case "list-item":
             return <li {...attributes}>{children}</li>;
         default:
-            return <p {...attributes}>{children}</p>;
+            return (
+                <PaddedComponent>
+                    <StyledP {...attributes}>{children}</StyledP>
+                </PaddedComponent>
+            );
     }
 };
 
 const initialValue = [
     {
-        type: "paragraph",
+        type: "heading-one",
         children: [
             {
                 text: "",

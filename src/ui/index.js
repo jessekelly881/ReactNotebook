@@ -2,7 +2,15 @@ import React, { useState, useCallback, useMemo } from "react";
 import { Slate, Editable, withReact } from "slate-react";
 import { Editor, Transforms, Range, Point, createEditor } from "slate";
 import { withHistory } from "slate-history";
-import { StyledP, StyledH1, PaddedComponent } from "./components/elements";
+import {
+    StyledP,
+    StyledH1,
+    StyledH2,
+    StyledH3,
+    StyledH4,
+    StyledH5,
+    PaddedComponent,
+} from "./components/elements";
 
 const SHORTCUTS = {
     "*": "list-item",
@@ -128,15 +136,35 @@ const Element = ({ attributes, children, element }) => {
                 </PaddedComponent>
             );
         case "heading-two":
-            return <h2 {...attributes}>{children}</h2>;
+            return (
+                <PaddedComponent>
+                    <StyledH2 {...attributes}>{children}</StyledH2>
+                </PaddedComponent>
+            );
         case "heading-three":
-            return <h3 {...attributes}>{children}</h3>;
+            return (
+                <PaddedComponent>
+                    <StyledH3 {...attributes}>{children}</StyledH3>
+                </PaddedComponent>
+            );
         case "heading-four":
-            return <h4 {...attributes}>{children}</h4>;
+            return (
+                <PaddedComponent>
+                    <StyledH4 {...attributes}>{children}</StyledH4>
+                </PaddedComponent>
+            );
         case "heading-five":
-            return <h5 {...attributes}>{children}</h5>;
+            return (
+                <PaddedComponent>
+                    <StyledH5 {...attributes}>{children}</StyledH5>
+                </PaddedComponent>
+            );
         case "heading-six":
-            return <h6 {...attributes}>{children}</h6>;
+            return (
+                <PaddedComponent>
+                    <StyledH5 {...attributes}>{children}</StyledH5>
+                </PaddedComponent>
+            );
         case "list-item":
             return <li {...attributes}>{children}</li>;
         default:

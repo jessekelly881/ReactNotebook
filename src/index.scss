@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400|Poppins:400");
+
 body {
     background-color: #eee;
     & #root {
+        max-width: 100%;
         background-color: white;
         height: 94vh;
         box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
@@ -11,11 +14,13 @@ body {
     #root {
         padding: 5px 0;
         margin: 2vh 30vw;
+        font-size: 13;
     }
 }
 
 @media only screen and (max-width: 1024px) /* Small screens */ {
     #root {
         margin: 2vh 2vw;
+        font-size: 12px;
     }
 }

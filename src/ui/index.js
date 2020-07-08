@@ -1,9 +1,9 @@
 import React from "react";
-import FullEditor from "ui/components/editor";
+import AppRouter from "./router";
 
 /**
  * App
  */
-const App = props => <FullEditor />;
+const App = props => <AppRouter />;
 
 export default App;

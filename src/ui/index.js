@@ -11,6 +11,7 @@ import {
     StyledH5,
     PaddedComponent,
 } from "./components/elements";
+import ComponentEditor from "./components/componentEditor";
 import { cx, css } from "emotion";
 
 const SHORTCUTS = {
@@ -69,18 +70,21 @@ const MarkdownShortcutsExample = () => {
         [],
     );
     return (
-        <Slate
-            editor={editor}
-            value={value}
-            onChange={value => setValue(value)}>
-            <Toolbar></Toolbar>
-            <Editable
-                renderElement={renderElement}
-                placeholder="Welcome to React Notebook!"
-                spellCheck
-                autoFocus
-            />
-        </Slate>
+        <>
+            <Slate
+                editor={editor}
+                value={value}
+                onChange={value => setValue(value)}>
+                <Toolbar></Toolbar>
+                <Editable
+                    renderElement={renderElement}
+                    placeholder="Welcome to React Notebook!"
+                    spellCheck
+                    autoFocus
+                />
+            </Slate>
+            <ComponentEditor />
+        </>
     );
 };
 
@@ -204,6 +208,10 @@ const Element = ({ attributes, children, element }) => {
             );
         case "list-item":
             return <li {...attributes}>{children}</li>;
+
+        case "component-editor":
+            return <ComponentEditor {...attributes} />;
+
         default:
             return (
                 <PaddedComponent>

@@ -7,9 +7,9 @@ console.log(theme);
 
 const StyledPreview = styled(LivePreview)`
     position: relative;
-    padding: 1rem;
-    background: #fafafa;
+    padding: 2rem;
     color: black;
+    background: #fafafa;
     height: auto;
     overflow: hidden;
 `;
@@ -18,6 +18,7 @@ const EditorWrapper = styled.div`
     font-family: "Source Code Pro", monospace;
     font-size: 0.9rem;
     padding: 1rem;
+    background: #fafafa;
     overflow: auto;
     * > textarea:focus {
         outline: none;

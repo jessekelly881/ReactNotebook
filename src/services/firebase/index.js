@@ -13,4 +13,4 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-export const createNotebook = _ => db.collection("notebooks").add({});
+// export const createNotebook = _ => db.collection("notebooks").add({});

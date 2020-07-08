@@ -6,6 +6,8 @@ export const PaddedComponent = styled.div`
 `;
 
 export const StyledP = styled.p`
+    width: 100%;
+    word-wrap: break-word;
     color: #444;
     font-family: "Source Sans Pro", Helvetica, sans-serif;
     font-weight: 300;

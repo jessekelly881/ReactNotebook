@@ -22,11 +22,13 @@
         "slate": "^0.58.4",
         "slate-history": "^0.58.4",
         "slate-react": "^0.58.4",
-        "styled-components": "^5.1.1"
+        "styled-components": "^5.1.1",
+        "yaml": "^1.10.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.10.4",
         "babel-preset-nano-react-app": "^0.1.0",
-        "parcel": "^2.0.0-nightly.328",
+        "parcel": "^1.12.4",
         "sass": "^1.26.10"
     },
     "babel": {

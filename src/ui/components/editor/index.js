@@ -13,6 +13,9 @@ import {
 } from "ui/components/elements";
 import ComponentEditor from "ui/components/componentEditor";
 import { cx, css } from "emotion";
+import welcomeState from "./welcome.yml";
+
+console.log(welcomeState);
 
 const SHORTCUTS = {
     "*": "list-item",
@@ -25,6 +28,7 @@ const SHORTCUTS = {
     "####": "heading-four",
     "#####": "heading-five",
     "######": "heading-six",
+    "```": "component-editor",
 };
 
 const Menu = React.forwardRef(({ className, ...props }, ref) => (
@@ -63,7 +67,7 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
 ));
 
 const FullEditor = () => {
-    const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(welcomeState);
     const renderElement = useCallback(props => <Element {...props} />, []);
     const editor = useMemo(
         () => withShortcuts(withReact(withHistory(createEditor()))),
@@ -83,7 +87,6 @@ const FullEditor = () => {
                     autoFocus
                 />
             </Slate>
-            <ComponentEditor />
         </>
     );
 };
@@ -220,16 +223,5 @@ const Element = ({ attributes, children, element }) => {
             );
     }
 };
-
-const initialValue = [
-    {
-        type: "heading-one",
-        children: [
-            {
-                text: "",
-            },
-        ],
-    },
-];
 
 export default FullEditor;

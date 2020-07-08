@@ -1,0 +1,7 @@
+- type: heading-one
+  children:
+      - text: Welcome to react notebook!
+
+- type: heading-two
+  children:
+      - text: Enjoy!

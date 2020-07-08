@@ -6,6 +6,10 @@
         "start": "parcel index.html --no-cache",
         "build": "parcel build index.html"
     },
+    "alias": {
+        "services": "./src/services",
+        "ui": "./src/ui"
+    },
     "license": "MIT",
     "dependencies": {
         "emotion": "^10.0.27",

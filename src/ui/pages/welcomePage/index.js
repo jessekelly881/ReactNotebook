@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { StyledH1, StyledP } from "ui/components/elements";
 import "./index.scss";
 import { createNotebook } from "services/firebase";
+import initialVal from "./welcome.yml";
 
 const Button = styled.button`
     background: #444;
@@ -15,7 +16,9 @@ const Button = styled.button`
 `;
 
 const createNotebookAndRedirect = history => _ => {
-    createNotebook().then(doc => history.push(`/notebook/${doc.id}`));
+    createNotebook({ data: initialVal }).then(doc =>
+        history.push(`/notebook/${doc.id}`),
+    );
 };
 
 /**

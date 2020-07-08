@@ -59,9 +59,7 @@ export default () => {
     return (
         <section className="componentEditor">
             <StyledProvider code={code}>
-                <StyledHeader>
-                    <span style={{ float: "right" }}>x</span>
-                </StyledHeader>
+                <StyledHeader></StyledHeader>
                 <AceEditor
                     style={{
                         height: "200px",

@@ -2,7 +2,7 @@
 
 An interactive, sharable, notebook for react components! 
 
-[I'm an inline-style link](https://www.reactnotebook.com)
+[ReactNotebook](https://www.reactnotebook.com)
 
 # Support my work!
 

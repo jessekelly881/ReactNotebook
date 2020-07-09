@@ -4,6 +4,15 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 import styled from "styled-components";
+import {
+    Slate,
+    Editable,
+    withReact,
+    RenderLeafProps,
+    useEditor,
+    ReactEditor,
+} from "slate-react";
+import { Editor, Transforms, Range, Point, createEditor } from "slate";
 import "./index.scss";
 
 const StyledPreview = styled(LivePreview)`
@@ -54,11 +63,18 @@ const StyledProvider = styled(LiveProvider)`
     overflow: hidden;
 `;
 
-export default () => {
-    const [code, setCode] = useState();
+export default ({ element, ...props }) => {
+    const editor = useEditor();
+    const [code, setCode] = useState(element.code);
+
+    function updateCode(val) {
+        const path = ReactEditor.findPath(editor, element);
+        console.log(path);
+        Transforms.setNodes(editor, { code: val }, { at: path });
+    }
 
     return (
-        <section className="componentEditor" contentEditable={false}>
+        <section className="componentEditor" contentEditable={false} {...props}>
             <StyledProvider code={code}>
                 <StyledHeader></StyledHeader>
                 <AceEditor
@@ -70,7 +86,7 @@ export default () => {
                     mode="javascript"
                     value={code}
                     theme="github"
-                    onChange={val => setCode(val)}
+                    onChange={updateCode}
                     name="UNIQUE_ID_OF_DIV"
                     fontSize={16}
                     editorProps={{ $blockScrolling: true }}

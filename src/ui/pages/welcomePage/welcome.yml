@@ -2,6 +2,11 @@
   children:
       - text: Welcome to react notebook!
 
-- type: heading-two
+- type: p
   children:
-      - text: Enjoy!
+      - text: "React note is a live playground for react components. Try editing anything(including the component) and refresh! React notebook is still in pre-pre-alpha but have a look around. Type ` and space to insert an editable component, #, ##, ###, etc then space to insert a header, - to insert a list, etc. The refresh the page. Or open the same link in another tab/browser."
+
+- type: component-editor
+  code: <span>Edit me!</span>
+  children:
+      - text: ""

@@ -76,7 +76,7 @@ export default ({ element, ...props }) => {
 
     return (
         <section className="componentEditor" contentEditable={false} {...props}>
-            <StyledProvider code={code}>
+            <StyledProvider code={code || "<></>"}>
                 <StyledHeader></StyledHeader>
                 <AceEditor
                     style={{

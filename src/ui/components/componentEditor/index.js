@@ -55,7 +55,8 @@ const StyledProvider = styled(LiveProvider)`
 `;
 
 export default () => {
-    const [code, setCode] = useState("<strong>Hello World!</strong>");
+    const [code, setCode] = useState();
+
     return (
         <section className="componentEditor" contentEditable={false}>
             <StyledProvider code={code}>

@@ -38,7 +38,6 @@ const withEditableVoids = editor => {
 };
 
 const FullEditor = ({ value, setValue, ...props }) => {
-    const renderElement = useCallback(props => <Element {...props} />, []);
     const editor = useMemo(
         () =>
             withEditableVoids(
@@ -46,6 +45,9 @@ const FullEditor = ({ value, setValue, ...props }) => {
             ),
         [],
     );
+
+    const renderElement = useCallback(props => <Element {...props} />, []);
+
     return (
         <Slate
             editor={editor}
@@ -141,6 +143,7 @@ const withShortcuts = editor => {
 
 const Element = props => {
     const { attributes, children, element } = props;
+
     switch (element.type) {
         case "block-quote":
             return <blockquote {...attributes}>{children}</blockquote>;

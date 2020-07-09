@@ -71,6 +71,7 @@ export default ({ element, ...props }) => {
         const path = ReactEditor.findPath(editor, element);
         console.log(path);
         Transforms.setNodes(editor, { code: val }, { at: path });
+        setCode(val);
     }
 
     return (

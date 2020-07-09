@@ -8,7 +8,7 @@ An interactive, sharable, notebook for react components!
 
 Coffee in. Code out. Wanna buy me a coffee(or a beer)? Bitcoin: bc1q60twsepwkjpf8w7myaupkr2fxkuc0cze0wxygh
 
-* Todo
+# Todo
 
 - Export as pdf, markdown, org mode
 - General ui cleanup

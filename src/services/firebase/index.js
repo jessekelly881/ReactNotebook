@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+import { throttle } from "throttle-debounce";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAyVtLrKl904-wtLhU8bEZ7Lk1LBfomHYg",
@@ -16,7 +17,8 @@ const db = firebase.firestore();
 export const createNotebook = data =>
     db.collection("notebooks").add(data || {});
 
-export const updateNotebook = id => data =>
-    db.collection("notebooks").doc(id).set(data, { merge: true });
+export const updateNotebook = throttle(2000, (id, data) => {
+    return db.collection("notebooks").doc(id).set(data, { merge: true });
+});
 
 export const getNotebook = id => db.collection("notebooks").doc(id).get();

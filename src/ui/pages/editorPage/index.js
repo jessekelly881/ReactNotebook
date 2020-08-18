@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getNotebook, updateNotebook } from "services/firebase";
 import FullEditor from "ui/components/editor";
@@ -7,14 +7,16 @@ import FullEditor from "ui/components/editor";
  * EditorController
  */
 export const EditorController = ({ dbValue, id, ...props }) => {
-    const updateValue = useCallback(val => {
-        setValue(val);
-        alert("Update notebook");
-        updateNotebook(id)({ data: val });
-    });
-
     const [value, setValue] = useState(dbValue);
-    return <FullEditor value={value} setValue={updateValue} {...props} />;
+
+    useEffect(
+        _ => {
+            updateNotebook(id, { data: value });
+        },
+        [value],
+    );
+
+    return <FullEditor value={value} setValue={setValue} {...props} />;
 };
 
 /**

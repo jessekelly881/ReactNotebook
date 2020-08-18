@@ -23,6 +23,7 @@
         "slate-history": "^0.58.4",
         "slate-react": "^0.58.4",
         "styled-components": "^5.1.1",
+        "throttle-debounce": "^2.3.0",
         "yaml": "^1.10.0"
     },
     "devDependencies": {
